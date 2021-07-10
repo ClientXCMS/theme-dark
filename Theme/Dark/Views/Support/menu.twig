@@ -1,0 +1,40 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+            <h3 class="card-title">
+                {{ trans("support.title") }}
+            </h3>
+            <a class="text-muted mb-1 small" href="{{ path('support.index') }}">
+                {{ trans("see_more") }}
+            </a>
+        </div>
+        <div class="preview-list">
+            {% if messages is not empty %}
+                {% for message in messages %}
+                    {% set isStaff = message.isStaff() %}
+                    <div class="ticket-content mt-2">
+                        <div class="preview-item border-bottom">
+                            <div class="preview-thumbnail">
+                                <img src="/modules/Admin/img/support_agent.jpg" alt="image" class="rounded"></div>
+                            <div class="preview-item-content d-flex flex-grow">
+                                <div class="flex-grow">
+                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
+                                        <h6 class="preview-subject">
+                                            {{ isStaff ? message.admin.username : message.account.name }}
+                                        </h6>
+                                        <p class="text-muted text-small">
+                                            {{ message.createdAt | ago }}
+                                        </p>
+                                    </div>
+                                    <p class="text-muted">
+                                        {{ message.content }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>

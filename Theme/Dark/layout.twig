@@ -1,0 +1,92 @@
+{% set mail_messages = mail_messages() %}
+
+{% include "includes/head.twig" with {title: block('title') } %}
+{% include "includes/header.twig" %}
+<h1>
+    {{ block('title') }}
+</h1>
+
+<div class="col-12">
+    {% if flash('success') %}
+
+        <div class="col-12 grid-margin stretch-card bg-success">
+            <div class="card bg-success">
+                <div class="card-body py-0 px-0 px-sm-3">
+                    <div class="row align-items-center">
+                        <div class="col-4 col-sm-3 col-xl-2">
+                            <img src="{{ theme_asset('/images/dashboard/Group126@2x.png') }}"
+                                 class="gradient-corona-img img-fluid" alt=""></div>
+                        <div class="col-5 col-sm-9 col-xl-8 p-0">
+                            <h4 class="mb-1 mb-sm-0">
+                                {{ flash('success') }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if flash('error') %}
+
+        <div class="col-12 grid-margin stretch-card ">
+            <div class="card bg-danger">
+                <div class="card-body py-0 px-0 px-sm-3">
+                    <div class="row align-items-center">
+                        <div class="col-4 col-sm-3 col-xl-2">
+                            <img src="{{ theme_asset('/images/dashboard/Group126@2x.png') }}"
+                                 class="gradient-corona-img img-fluid" alt=""></div>
+                        <div class="col-5 col-sm-9 col-xl-8 p-0">
+                            <h4 class="mb-1 mb-sm-0">
+                                {{ flash('error') }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if flash('warning') %}
+
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card bg-warning">
+                <div class="card-body py-0 px-0 px-sm-3">
+                    <div class="row align-items-center">
+                        <div class="col-4 col-sm-3 col-xl-2">
+                            <img src="{{ theme_asset('/images/dashboard/Group126@2x.png') }}"
+                                 class="gradient-corona-img img-fluid" alt=""></div>
+                        <div class="col-5 col-sm-9 col-xl-8 p-0">
+                            <h4 class="mb-1 mb-sm-0">
+                                {{ flash('warning') }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if flash('info') %}
+
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card bg-info">
+                <div class="card-body py-0 px-0 px-sm-3">
+                    <div class="row align-items-center">
+                        <div class="col-4 col-sm-3 col-xl-2">
+                            <img src="{{ theme_asset('/images/dashboard/Group126@2x.png') }}"
+                                 class="gradient-corona-img img-fluid" alt=""></div>
+                        <div class="col-5 col-sm-9 col-xl-8 p-0">
+                            <h4 class="mb-1 mb-sm-0">
+                                {{ flash('info') }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% block body %}{% endblock %}
+                    {% include "includes/footer.twig" %}
+                    {% block scripts %}{% endblock %}
+</body>
+</html>
+            

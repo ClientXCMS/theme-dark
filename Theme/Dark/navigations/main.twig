@@ -1,0 +1,58 @@
+{% if title %}
+
+    <li class="nav-item nav-category">
+        <span class="nav-link">
+            {{ trans(title) }}
+        </span>
+    </li>
+{% endif %}
+{% if current_user() %}
+    {% for item in online %}
+        <li class="nav-item menu-items {{ is_subpath(item.route)  ? 'active' : '' }}">
+            <a class="nav-link" href="{{ path(item.route) }}">
+
+                <span class="menu-icon">
+                    <i class="{{ item.icon }}"></i>
+                </span>
+                <span class="menu-title">
+                    {{ trans(item.name) }}
+                </span>
+                {% if item.count %}
+
+                    <div class="float-right">
+                    <span class="badge badge-danger">
+                        {{ item.count }}
+                    </span>
+                    </div>
+                {% endif %}
+            </a>
+        </li>
+    {% endfor %}
+{% endif %}
+{% if current_user() == null %}
+    {% for item in offline %}
+        <li class="nav-item menu-items {{ is_subpath(item.route)  ? 'active' : '' }}">
+            <a class="nav-link" href="{{ path(item.route) }}">
+
+            <span class="menu-icon">
+                <i class="{{ item.icon }}"></i>
+            </span>
+                <span class="menu-title">
+                {{ trans(item.name) }}
+            </span>
+            </a>
+        </li>
+    {% endfor %}
+{% endif %}
+{% for item in global %}
+<li class="nav-item menu-items {% if item.route == 'account' %} {{ is_path(item.route)  ? 'active' : '' }} {% else %} {{ is_subpath(item.route)  ? 'active' : '' }} {% endif %}">
+    <a class="nav-link" href="{{ path(item.route) }}">
+
+        <span class="menu-icon">
+            <i class="{{ item.icon }}"></i>
+        </span>
+        <span class="menu-title">
+            {{ trans(item.name) }}
+        </span>
+    </a>
+    </li>{% endfor %}

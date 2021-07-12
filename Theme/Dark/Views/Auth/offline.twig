@@ -7,7 +7,7 @@
 					<form action="{{ path('auth.login')}}" id="login-form" method="post">
 						{{ csrf_input() }}
 
-						<input class="form-control" name="redirect_route" id="redirect_route" hidden="" type="text" value="account">
+						<input class="form-control" name="redirect_route" hidden="" type="text" value="account">
 						{{ field('email', null, trans("email"), {type: 'email'}) }}
 						{{ field('password', null, trans("password"), {type: 'password'}) }}
 

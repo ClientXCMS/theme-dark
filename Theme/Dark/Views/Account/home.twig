@@ -23,8 +23,8 @@
 					<div class="col-md-12 col-sm-12">
 						<div class="jumbotron bg-primary text-white mb-2">
 							<div class="hero-inner">
-								<h2>{{ setting('theme_home_title', config('app.name')) }}</h2>
-								<p class="lead">{{ setting('theme_home_subtitle', trans('defaultsubtitle')) }}</p>
+								<h2>{{ setting('theme_home_title', config('app.name'))  | html_decode}}</h2>
+								<p class="lead">{{ setting('theme_home_subtitle', trans('defaultsubtitle')) | html_decode }}</p>
 							</div>
 						</div>
 					</div>

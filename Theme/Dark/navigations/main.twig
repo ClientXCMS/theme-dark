@@ -17,11 +17,11 @@
                 <span class="menu-title">
                     {{ trans(item.name) }}
                 </span>
-                {% if item.count %}
+                {% if item.value %}
 
                     <div class="float-right">
                     <span class="badge badge-danger">
-                        {{ item.count }}
+                        {{ item.value }}
                     </span>
                     </div>
                 {% endif %}
@@ -40,6 +40,15 @@
                 <span class="menu-title">
                 {{ trans(item.name) }}
             </span>
+
+                {% if item.value %}
+
+                    <div class="float-right">
+                    <span class="badge badge-danger">
+                        {{ item.value }}
+                    </span>
+                    </div>
+                {% endif %}
             </a>
         </li>
     {% endfor %}
@@ -54,5 +63,14 @@
         <span class="menu-title">
             {{ trans(item.name) }}
         </span>
+
+        {% if item.value %}
+
+            <div class="float-right">
+                    <span class="badge badge-danger">
+                        {{ item.value }}
+                    </span>
+            </div>
+        {% endif %}
     </a>
     </li>{% endfor %}

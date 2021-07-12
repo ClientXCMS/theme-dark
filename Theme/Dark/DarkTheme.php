@@ -3,7 +3,8 @@ namespace Themes\Dark;
 
 use ClientX\Theme\ThemeInterface;
 
-class DarkTheme implements ThemeInterface {
+class DarkTheme implements ThemeInterface
+{
 
     const DEFINITIONS = __DIR__ . '/config.php';
 

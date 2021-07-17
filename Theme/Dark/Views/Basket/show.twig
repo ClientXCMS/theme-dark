@@ -71,9 +71,12 @@
 
                                                 <select class="form-control billing"
                                                         data-id="{{ row.product.id }}">
-                                                    {% for cycle in cycles %}
-                                                        <option value="{{ cycle.name }}" {% if cycle.name == row.billing %} selected {% endif %}>{{ trans(cycle.translateKey) }}</option>
-                                                    {% endfor %}
+                                                        
+                                                            {% for cycle in cycles %}
+                                                                {% if row.product.originalPrice(cycle.name, 0, true) != 0 %}
+                                                                    <option value="{{ cycle.name }}" {% if cycle.name == row.billing %} selected {% endif %}>{{ trans(cycle.translateKey) }}</option>
+                                                                {% endif %}
+                                                            {% endfor %}
                                                 </select>
                                             </td>
                                         {% endif %}

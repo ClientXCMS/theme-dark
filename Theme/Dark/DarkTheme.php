@@ -1,4 +1,5 @@
 <?php
+
 namespace Themes\Dark;
 
 use ClientX\Theme\ThemeInterface;
@@ -12,10 +13,10 @@ class DarkTheme implements ThemeInterface
     {
         return "Dark";
     }
-    
+
     public function getVersion(): ?string
     {
-        return "1.0";
+        return "1.2";
     }
 
     public function getAuthor(): ?string
@@ -37,6 +38,7 @@ class DarkTheme implements ThemeInterface
     {
         return '/Dark/assets';
     }
+
     public function getPluginsPath(): ?string
     {
         return '/Dark/vendor';
@@ -47,16 +49,18 @@ class DarkTheme implements ThemeInterface
         return __DIR__;
     }
 
-    public function getComponentPath():?string
+    public function getComponentPath(): ?string
     {
         return null;
     }
 
-    public function getContacts():?array
+    public function getContacts(): ?array
     {
+
         return [
-            'discord' => 'MartinDev. #3375',
-            'email'   => 'Contact@clientxcms.com'
+            'discord' => 'clientxcms.com/discord',
+            'email' => 'contact@clientxcms.com',
+            'twitter' => "@ClientXCMS",
         ];
     }
 }

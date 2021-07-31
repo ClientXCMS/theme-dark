@@ -18,7 +18,7 @@
 
                             {% for row in products | batch(3) %}
                                 {% for product in row %}
-                                    {% include "@shop/product/card.twig" %}
+                                    {{ include("@shop/product/card") }}
                                 {% endfor %}
                             {% endfor %}
                         </div>

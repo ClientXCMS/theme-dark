@@ -1,8 +1,0 @@
-{% if current_user() %}
-	<li class="{{ is_subpath('support') ? 'active' : '' }}">
-		<a href="{{ path('support')}}">
-			<i class="fa fa-life-ring"></i>
-			<span>{{ trans("support.title")}}</span>
-		</a>
-	</li>
-{% endif %}

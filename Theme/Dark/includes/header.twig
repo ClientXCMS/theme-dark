@@ -3,7 +3,7 @@
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
 
             <a class="sidebar-brand brand-logo" href="{{ path('account') }}">
-                {{ config('app.title') | raw }}
+                {{ config('app.title') | html_decode | raw }}
             </a>
             <a class="sidebar-brand brand-logo-mini" href="{{ path('account') }}">
                 CXCMS
@@ -16,15 +16,15 @@
 
                 {% if is_admin() %}
 
-            <li class="nav-item menu-items {{ is_subpath('auth.admin')  ? 'active' : '' }}">
+            <li class="nav-item menu-items">
                 <a class="nav-link" href="{{ path('auth.admin') }}">
 
-                                <span class="menu-icon">
-                                    <i class="fas fa-home"></i>
-                                </span>
+                <span class="menu-icon">
+                    <i class="fas fa-home"></i>
+                </span>
                     <span class="menu-title">
-                                    {{ trans('admin.backtoadmin') }}
-                                </span>
+                        {{ trans('admin.backtoadmin') }}
+                </span>
                 </a>
             </li>
             {% endif %}

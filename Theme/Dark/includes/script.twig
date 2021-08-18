@@ -29,4 +29,4 @@
     }
 </script>
 {% block scripts %}{% endblock %}
-{% autoescape false %}{{ config('html.body') }}{% endautoescape %}
+{% autoescape false %}{{ config('html.body') | html_decode | raw }}{% endautoescape %}

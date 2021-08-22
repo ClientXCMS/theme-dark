@@ -6,8 +6,135 @@
         </span>
     </li>
 {% endif %}
+
 {% if current_user() %}
-    {% for item in online %}
+    {% for i, item in online %}
+        {% if item.items is not empty %}
+            <li class="nav-item menu-items  {% for link, content in item.items %}{{ _path == link ? 'active' }}{% endfor %}">
+                <a class="nav-link" data-toggle="collapse" href="#ui-{{ i }}" aria-expanded="false"
+                   aria-controls="ui-{{ i }}">
+              <span class="menu-icon">
+                <i class="{{ item.icon }}"></i>
+              </span>
+                    <span class="menu-title">{{ trans(item.name) }}</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse  {% for link, content in item.items %}{{ _path == link ? 'show' }}{% endfor %}"
+                     id="ui-{{ i }}">
+                    <ul class="nav flex-column sub-menu">
+
+                        {% for link, content in item.items %}
+                            <li class="nav-item "><a class="nav-link {{ _path == link ? 'active' ? : '' }}"
+                                                     href="{{ link }}">{{ content }}</a></li>
+                        {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        {% else %}
+
+            <li class="nav-item menu-items {{ is_subpath(item.route)  ? 'active' : '' }}">
+                <a class="nav-link" href="{{ path(item.route) }}">
+
+                <span class="menu-icon">
+                    <i class="{{ item.icon }}"></i>
+                </span>
+                    <span class="menu-title">
+                    {{ trans(item.name) }}
+                </span>
+                    {% if item.value %}
+
+                        <div class="float-right">
+                    <span class="badge badge-danger">
+                        {{ item.value }}
+                    </span>
+                        </div>
+                    {% endif %}
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% if current_user() == null %}
+    {% for i, item in offline %}
+
+        {% if item.items is not empty %}
+            <li class="nav-item menu-items {% for link, content in item.items %}{{ _path == link ? 'active' }}{% endfor %}">
+                <a class="nav-link" data-toggle="collapse" href="#ui-{{ i }}" aria-expanded="false"
+                   aria-controls="ui-{{ i }}">
+              <span class="menu-icon">
+                <i class="{{ item.icon }}"></i>
+              </span>
+                    <span class="menu-title">{{ trans(item.name) }}</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse {% for link, content in item.items %}{{ _path == link ? 'show' }}{% endfor %}"
+                     id="ui-{{ i }}">
+                    <ul class="nav flex-column sub-menu">
+
+                        {% for link, content in item.items %}
+                            <li class="nav-item "><a
+                                        class="nav-link {{ _path == link ? 'active' ? : '' }}"
+                                        href="{{ link }}">{{ content }}</a></li>
+
+                        {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        {% else %}
+
+            <li class="nav-item menu-items {{ is_subpath(item.route)  ? 'active' : '' }}">
+                <a class="nav-link" href="{{ path(item.route) }}">
+
+                <span class="menu-icon">
+                    <i class="{{ item.icon }}"></i>
+                </span>
+                    <span class="menu-title">
+                    {{ trans(item.name) }}
+                </span>
+                    {% if item.value %}
+
+                        <div class="float-right">
+                    <span class="badge badge-danger">
+                        {{ item.value }}
+                    </span>
+                        </div>
+                    {% endif %}
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% for i, item in global %}
+    {% if item.items is not empty %}
+        <li class="nav-item menu-items  {% for link, content in item.items %}{{ _path == link ? 'active' }}{% endfor %}">
+            <a class="nav-link" data-toggle="collapse" href="#ui-{{ i }}" aria-expanded="false"
+               aria-controls="ui-{{ i }}">
+              <span class="menu-icon">
+                <i class="{{ item.icon }}"></i>
+              </span>
+                <span class="menu-title">{{ trans(item.name) }}</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse  {% for link, content in item.items %}{{ _path == link ? 'show' }}{% endfor %}"
+                 id="ui-{{ i }}">
+                <ul class="nav flex-column sub-menu">
+
+                    {% for link, content in item.items %}
+                        <li class="nav-item "><a
+                                    class="nav-link {{ _path == link ? 'active' ? : '' }}"
+                                    href="{{ link }}">{{ content }}</a></li>
+
+
+                    {% endfor %}
+                    </li>
+                </ul>
+            </div>
+        </li>
+    {% else %}
+
         <li class="nav-item menu-items {{ is_subpath(item.route)  ? 'active' : '' }}">
             <a class="nav-link" href="{{ path(item.route) }}">
 
@@ -27,50 +154,4 @@
                 {% endif %}
             </a>
         </li>
-    {% endfor %}
-{% endif %}
-{% if current_user() == null %}
-    {% for item in offline %}
-        <li class="nav-item menu-items {{ is_subpath(item.route)  ? 'active' : '' }}">
-            <a class="nav-link" href="{{ path(item.route) }}">
-
-            <span class="menu-icon">
-                <i class="{{ item.icon }}"></i>
-            </span>
-                <span class="menu-title">
-                {{ trans(item.name) }}
-            </span>
-
-                {% if item.value %}
-
-                    <div class="float-right">
-                    <span class="badge badge-danger">
-                        {{ item.value }}
-                    </span>
-                    </div>
-                {% endif %}
-            </a>
-        </li>
-    {% endfor %}
-{% endif %}
-{% for item in global %}
-<li class="nav-item menu-items {% if item.route == 'account' %} {{ is_path(item.route)  ? 'active' : '' }} {% else %} {{ is_subpath(item.route)  ? 'active' : '' }} {% endif %}">
-    <a class="nav-link" href="{{ path(item.route) }}">
-
-        <span class="menu-icon">
-            <i class="{{ item.icon }}"></i>
-        </span>
-        <span class="menu-title">
-            {{ trans(item.name) }}
-        </span>
-
-        {% if item.value %}
-
-            <div class="float-right">
-                    <span class="badge badge-danger">
-                        {{ item.value }}
-                    </span>
-            </div>
-        {% endif %}
-    </a>
-    </li>{% endfor %}
+    {% endif %}{% endfor %}

@@ -6,7 +6,7 @@
                 {{ config('app.title') | html_decode | raw }}
             </a>
             <a class="sidebar-brand brand-logo-mini" href="{{ path('account') }}">
-                CXCMS
+                {{ config('app.mobile') | html_decode | raw }}
             </a>
         </div>
         <ul class="nav">
@@ -35,7 +35,12 @@
         <nav class="navbar p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo-mini" href="{{ path('account') }}">
-                    <img src="/modules/Admin/dist/img/Favicon-Light.png" style="width: 28px;" alt="logo"/>
+				
+            {% if config('html.favicon') is not empty %}
+              <img src="{{ config('html.favicon')  }}"style="width: 28px;" alt="logo">
+            {% else %}
+                  <img src="/modules/Admin/dist/img/Favicon-Light.png" style="width: 28px;" alt="logo"/>
+            {% endif %}
                 </a>
             </div>
             <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">

@@ -109,7 +109,7 @@
 
 {% for i, item in global %}
     {% if item.items is not empty %}
-        <li class="nav-item menu-items  {% for link, content in item.items %}{{ _path == link ? 'active' }}{% endfor %}">
+        <li class="nav-item menu-items  {% for link, content in item.items %}{{ _path == link ? 'active' }}{% endfor %} ">
             <a class="nav-link" data-toggle="collapse" href="#ui-{{ i }}" aria-expanded="false"
                aria-controls="ui-{{ i }}">
               <span class="menu-icon">
@@ -135,7 +135,7 @@
         </li>
     {% else %}
 
-        <li class="nav-item menu-items {{ is_subpath(item.route)  ? 'active' : '' }}">
+        <li class="nav-item {% if item.route == 'account' %} menu-items {{ is_path(item.route)  ? 'active' : '' }} {% else %} {{ is_subpath(item.route)  ? 'active' : '' }} {% endif %}">
             <a class="nav-link" href="{{ path(item.route) }}">
 
                 <span class="menu-icon">

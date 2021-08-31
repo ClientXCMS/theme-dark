@@ -17,6 +17,7 @@
 <script src="{{ theme_asset('js/off-canvas.js') }}" async></script>
 {{ recaptcha_scripts() }}
 
+    {% autoescape false %}{{ config('html.body') | html_decode | raw }}{% endautoescape %}
 <script>
     const logoutForm = document.getElementById("logout-form")
     const logout = function () {
@@ -25,10 +26,8 @@
     }
     window.confirmationText = "{{ trans('admin.confirmation') }}"
     window.CLIENTXCMSCurrency = "{{ config('app.currency') }}"
-
+    window.csrf = "{{ csrf_token() }}";
     function confirmation() {
         return confirm(window.confirmationText)
     }
 </script>
-{% block scripts %}{% endblock %}
-{% autoescape false %}{{ config('html.body') | html_decode | raw }}{% endautoescape %}

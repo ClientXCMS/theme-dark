@@ -22,7 +22,10 @@
         {{ field('password', null, trans("password"), {type: 'password',  'class':'pwd-field'}) }}
         {{ field('password_confirm', null, trans("confirmation"), {type: 'password',  'class':'pwd-field'}) }}
         {{ csrf_input() }}
+                <center>
         {{ recaptcha() }}
+        </center>
+
         <div class="col-md-12 col-lg-6">
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">

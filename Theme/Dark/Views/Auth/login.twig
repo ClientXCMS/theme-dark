@@ -29,8 +29,10 @@
         {{ csrf_input() }}
         {{ field('email', null,trans("email") , {type: 'email'}) }}
         {{ field('password', null, trans("password"), {type: 'password'}) }}
-
+        <center>
         {{ recaptcha() }}
+        </center>
+
 
         <div class="row">
             <div class="col-12 col-sm-6">

@@ -77,10 +77,13 @@
 					<small>{{ trans("account.signup.alreadyclient") }}</small>
 					<a href="{{ path('auth.login') }}" class="login">{{ trans("login") }}</a>
 				</div>
+				
+    {% if config('resetpwd', 'true') == 'true' %}
 				<div>
 					<small>{{ trans("account.reset.title") }}</small>
 					<a href="{{ path('auth.password') }}" class="login">{{ trans("account.signup.clickhere") }}</a>
 				</div>
+				{% endif %}
 			</div>
 		</div>
 </form>{% endblock %}{% block scripts %}

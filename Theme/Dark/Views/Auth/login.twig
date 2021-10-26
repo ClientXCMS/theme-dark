@@ -52,16 +52,22 @@
             </div>
         </div>
     </form>
+    
+    {% if config('resetpwd', 'true') == 'true' %}
     <a href="{{ path('auth.password') }}" class="text-muted">
         {{ trans("account.forgot.title") }}
     </a>
     <br>
+    {% endif %}
+    
+    {% if config('register', 'true') == 'true' %}
     <small>
         {{ trans("account.login.nocustomeryet") }}
     </small>
     <a href="{{ path('account.signup') }}" class="text-muted">
         {{ trans("account.signup.title") }}
     </a>
+    {% endif %}
     <hr>
     <a href="{{ path('account') }}"
        class="text-center text-primary float-right">{{ trans("admin.backtosite") }}

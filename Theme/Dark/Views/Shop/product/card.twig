@@ -38,14 +38,14 @@
                         {% endif %}
                         <button class="btn btn-lg btn-block btn-outline-{{ product.pinned ? 'success' : 'primary' }}">
                             {{ trans("add_cart") }}
-                            <i class="fas fa-arrow-right"></i>
+                            <i class="fas fa-arrow-right d-none d-sm-inline-block"></i>
                         </button>
                     </form>
                 {% else %}
                     <a class="btn btn-lg btn-block btn-outline-{{ product.pinned ? 'success' : 'primary' }}"
                        href="{{ path('shop.checkout', {id: product.id}) }}">
                         {{ trans("buy") }}
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right d-none d-sm-inline-block"></i>
                     </a>
                 {% endif %}
             {% else %}
@@ -53,7 +53,7 @@
                 <button class="btn btn-lg btn-block btn-outline-{{ product.pinned ? 'success' : 'primary' }}"
                         type="button">
                     {{ trans("out_stock") }}
-                    <i class="fas fa-time"></i>
+                    <i class="fas fa-time d-none d-sm-inline-block"></i>
                 </button>
             {% endif %}
         </div>

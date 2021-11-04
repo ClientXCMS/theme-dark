@@ -68,16 +68,19 @@
                                             </td>
                                         {% else %}
                                             <td>
+                                                {% if row.isUniqueCycle() %}
+                                                    {{ trans(row.UniqueCycle.translateKey) }}
+                                                {% else %}
 
-                                                <select class="form-control billing"
-                                                        data-id="{{ row.product.id }}">
-                                                        
-                                                            {% for cycle in cycles %}
-                                                                {% if row.product.originalPrice(cycle.name, 0, true) != 0 %}
-                                                                    <option value="{{ cycle.name }}" {% if cycle.name == row.billing %} selected {% endif %}>{{ trans(cycle.translateKey) }}</option>
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                </select>
+                                                    <select class="form-control billing"
+                                                            data-id="{{ row.product.id }}">
+                                                        {% for cycle in row.cyclesAvailable %}
+                                                            {% if row.product.originalPrice(cycle.name, 0, true) != 0 %}
+                                                                <option value="{{ cycle.name }}" {% if cycle.name == row.billing %} selected {% endif %}>{{ trans(cycle.translateKey) }}</option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                {% endif %}
                                             </td>
                                         {% endif %}
 

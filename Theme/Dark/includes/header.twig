@@ -10,24 +10,24 @@
             </a>
         </div>
         <ul class="nav">
-            <li class="nav-item menu-items">
-
-                {{ navigation('main_menu') }}
-
-                {% if is_admin() %}
-
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="{{ path('auth.admin') }}">
-
-                <span class="menu-icon">
-                    <i class="fas fa-home"></i>
-                </span>
-                    <span class="menu-title">
-                        {{ trans('admin.backtoadmin') }}
-                </span>
-                </a>
+            {% if current_user() %}
+            <li class="nav-item profile">
+                <div class="profile-desc">
+                    <div class="profile-pic">
+                        <div class="count-indicator">
+                            <img class="img-xs rounded-circle " src="{{ theme_global('avatar/avatar-1.png') }}" alt="">
+                            <span class="count bg-success"></span>
+                        </div>
+                        <div class="profile-name">
+                            <h5 class="mb-0 font-weight-normal">{{ current_user().name }}</h5>
+                            <span>{{ trans("customer") }}</span>
+                        </div>
+                    </div>
+                </div>
             </li>
             {% endif %}
+                {{ navigation('main_menu') }}
+
         </ul>
     </nav>
     <div class="container-fluid page-body-wrapper">
@@ -49,6 +49,20 @@
                 </button>
                 <ul class="navbar-nav navbar-nav-right">
 
+                    {% if is_admin() %}
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="{{ path('auth.admin') }}">
+
+                <span class="menu-icon">
+                    <i class="fas fa-home"></i>
+                </span>
+                                <span class="menu-title d-none d-sm-inline-block">
+                        {{ trans('admin.backtoadmin') }}
+                </span>
+                            </a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item dropdown border-left">
                         <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
                            data-toggle="dropdown" aria-expanded="false">
@@ -72,7 +86,9 @@
                                     </div>
                                 </a>
                             {% endfor %}
+                        </div>
                     </li>
+
                     {% if current_user() %}
 
                         <li class="nav-item dropdown border-left">
@@ -122,9 +138,10 @@
                             <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <div class="navbar-profile">
                                     <img class="img-xs rounded-circle"
-                                         src="{{ theme_asset('images/support_user.jpg') }}" alt="">
+                                         src="{{ theme_global('avatar/avatar-1.png') }}" alt="">
                                     <p class="mb-0 d-none d-sm-block navbar-profile-name">
-                                        {{ current_user().name }}
+                                        {{ trans("hello", {'%name%': current_user().name}) }}
+
                                     </p>
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
@@ -132,7 +149,6 @@
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                                  aria-labelledby="profileDropdown">
                                 <h6 class="p-3 mb-0">
-                                    {{ trans("hello", {'%name%': current_user().name}) }}
                                     {{ trans("loggedin", {'%date%': current_user().lastSignAt.format('d/m à  H:i')}) | raw }}
                                 </h6>
 

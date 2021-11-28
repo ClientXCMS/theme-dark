@@ -63,6 +63,8 @@
                             </a>
                         </li>
                     {% endif %}
+		    
+                {% if setting('disabled_changelocale') != 'true' %}
                     <li class="nav-item dropdown border-left">
                         <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
                            data-toggle="dropdown" aria-expanded="false">
@@ -89,6 +91,7 @@
                         </div>
                     </li>
 
+                {% endif %}
                     {% if current_user() %}
 
                         <li class="nav-item dropdown border-left">
@@ -119,10 +122,10 @@
                                         </div>
                                         <div class="preview-item-content">
                                             <p class="preview-subject mb-1">
-                                                {{ mail.data.subject }}
+                                                {{ mail.data.subject |raw }}
                                             </p>
                                             <p class="text-muted ellipsis mb-0">
-                                                {{ mail.data.introLines[0] }}
+                                                {{ mail.data.introLines[0] | raw }}
                                             </p>
                                             <p>
                                                 {{ mail.createdAt | ago }}

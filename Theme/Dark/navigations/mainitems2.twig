@@ -1,0 +1,20 @@
+
+        <li class="nav-item {% if item.route == 'account' %} menu-items {{ is_path(item.route)  ? 'active' : '' }} {% else %} {{ is_subpath(item.route)  ? 'active' : '' }} {% endif %}">
+            <a class="nav-link" href="{{ path(item.route) }}" {%  if item.target %} target="{{ item.target }}" {% endif %}>
+
+                <span class="menu-icon">
+                    <i class="{{ item.icon }}"></i>
+                </span>
+                <span class="menu-title">
+                    {{ trans(item.name) }}
+                </span>
+                {% if item.value %}
+
+                    <div class="float-right">
+                    <span class="badge badge-danger">
+                        {{ item.value }}
+                    </span>
+                    </div>
+                {% endif %}
+            </a>
+        </li>

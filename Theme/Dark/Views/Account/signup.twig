@@ -47,9 +47,11 @@
 			<div class="col-md-12 col-xl-12 col-sm-12">
 				{{ field('password_confirm', null, trans("confirmation"), {'type': 'password', 'class':'pwd-field'}) }}
 			</div>
+			<div class="d-flex justify-content-center">
 			{{ recaptcha()}}
+
+			</div>
 			{% if setting('tosLinks') %}
-				<div class="col-md-12 col-sm-12">
 					<div class="form-group">
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" name="inputAcceptTos" class="custom-control-input {{ errors.inputAcceptTos ? 'is-invalid' }}" id="inputAcceptTos">
@@ -57,15 +59,12 @@
 							<a href="{{ setting('tosLinks') }}" target="_blank">{{ trans("account.signup.tos") }}</a>
 						</div>
 					</div>
-				</div>
 			{% endif %}
-			<div class="col-md-12 col-sm-12">
 
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-lg btn-block">
 						{{ trans("register")}}
 					</button>
-				</div>
 			</div>
 
 			<div class="col-md-12 col-sm-12">

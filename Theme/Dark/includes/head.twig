@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ title }} | {{ config('app.name') }}</title>
+    <title>{{ title  | html_decode}} | {{ config('app.name') }}</title>
     {% if config('html.favicon') is not empty %}
         <link rel="icon" type="image/png" sizes="16x16" href="{{ config('html.favicon') }}">
     {% else %}
@@ -59,11 +59,22 @@
             font: normal normal normal 24px/1 "Font Awesome 5 Free" !important;
 
         }
+		.article .article-details {
+			background: var(--gray-dark);
+		}
 
 
         /* Pricing table */
         .pricing-card .pricing-card-body {
             padding: 25px 27px 21px 27px; }
     </style>
-    <link rel="stylesheet" href="{{ theme_asset('css/style.css') }}">
+
+    {% if config('theme_primary') %}
+
+        <link rel="stylesheet"
+              href="{{ path('theme_custom') }}?primary={{ config('theme_primary') | replace({"#": ""}) }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ theme_asset('css/style.css') }}">
+
+    {% endif %}
 </head>

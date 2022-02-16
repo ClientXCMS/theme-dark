@@ -1,0 +1,22 @@
+
+            <li class="nav-item menu-items  {% for link, content in item.items %}{{ _path == link ? 'active' }}{% endfor %}">
+                <a class="nav-link" data-toggle="collapse" href="#ui-{{ i }}" aria-expanded="false"
+                   aria-controls="ui-{{ i }}">
+              <span class="menu-icon">
+                <i class="{{ item.icon }}"></i>
+              </span>
+                    <span class="menu-title">{{ trans(item.name) }}</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse  {% for link, content in item.items %}{{ _path == link ? 'show' }}{% endfor %}"
+                     id="ui-{{ i }}">
+                    <ul class="nav flex-column sub-menu">
+
+                        {% for link, content in item.items %}
+                            <li class="nav-item "><a class="nav-link {{ _path == link ? 'active' ? : '' }}"
+                                                     href="{{ link }}">{{ content }}</a></li>
+                        {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </li>

@@ -92,7 +92,8 @@
                 </div>
               </li>
                 {% endif %}
-                    {% if current_user() %}
+                                {% if current_user() and current_user().confirmed() %}
+
 
                         <li class="nav-item dropdown border-left">
                             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
@@ -139,6 +140,7 @@
                                     </a></p>
                             </div>
                         </li>
+                        {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <div class="navbar-profile">
@@ -170,6 +172,8 @@
                                         </p>
                                     </div>
                                 </a>
+                                                {% if current_user() and current_user().confirmed() %}
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item" href="{{ path('account.emails') }}">
                                     <div class="preview-thumbnail">
@@ -183,6 +187,7 @@
                                         </p>
                                     </div>
                                 </a>
+                                {% endif %}
                                 <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item preview-item" href="{{ path('account.activity') }}">

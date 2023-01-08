@@ -19975,6 +19975,7 @@ button:focus {
     outline-color: transparent;
     box-shadow: none;
     outline-style: none;
+    color: #fff;
 }
 
 textarea {
